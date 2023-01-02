@@ -3,7 +3,6 @@ import requests
 import argparse
 from urllib.parse import urlparse
 from dotenv import load_dotenv
-load_dotenv()
 
 
 def count_clicks(token, link):
@@ -15,7 +14,8 @@ def count_clicks(token, link):
     response = requests.get(
         f'https://api-ssl.bitly.com/v4/bitlinks/{link}/clicks/summary',
         headers=headers,
-        params=params)
+        params=params
+    )
     response.raise_for_status()
     return response.json()["total_clicks"]
 
@@ -28,9 +28,11 @@ def shorten_link(token, url):
     body = {
         'long_url': url,
     }
-    response = requests.post('https://api-ssl.bitly.com/v4/shorten',
-                             headers=headers,
-                             json=body)
+    response = requests.post(
+        'https://api-ssl.bitly.com/v4/shorten',
+        headers=headers,
+        json=body
+    )
     response.raise_for_status()
     return response.json()['id']
 
@@ -41,19 +43,21 @@ def is_bitlink(token, url):
         'Authorization': f'Bearer {token}',
     }
 
-    response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{url}',
-                            headers=headers)
+    response = requests.get(
+        f'https://api-ssl.bitly.com/v4/bitlinks/{url}',
+        headers=headers
+    )
     return response.ok
 
 
 def main():
-
+    load_dotenv()
     bitly_token = os.getenv('BITLY_TOKEN')
     parser = argparse.ArgumentParser(
         description='Программа возвращает: bitlink, если ссылка bitlink:'
                     ' возвращает кол-во переходов по ней.'
     )
-   parser.add_argument(
+    parser.add_argument(
         'args',
         help='Введите полную ссылку или битлинк'
     )
@@ -74,3 +78,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
