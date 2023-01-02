@@ -53,22 +53,23 @@ def main():
         description='Программа возвращает: bitlink, если ссылка bitlink:'
                     ' возвращает кол-во переходов по ней.'
     )
-    parser.add_argument('url', help='Введите полную ссылку или битлинк')
-    url = parser.parse_args()
-    url = url.url
-    url_parsed = urlparse(url)
-    url_parsed = f"{url_parsed.netloc}{url_parsed.path}"
+   parser.add_argument(
+        'args',
+        help='Введите полную ссылку или битлинк'
+    )
+    url_args = parser.parse_args()
+    parsed_url = urlparse(url_args.url)
+    parsed_url = f"{parsed_url.netloc}{parsed_url.path}"
 
     try:
-        if is_bitlink(bitly_token, url_parsed):
-            cliks_count = count_clicks(bitly_token, url_parsed)
+        if is_bitlink(bitly_token, parsed_url):
+            cliks_count = count_clicks(bitly_token, parsed_url)
             print('Переходов по bitlink:', cliks_count)
         else:
-            bitlink = shorten_link(bitly_token, url)
+            bitlink = shorten_link(bitly_token, parsed_url)
             print('bitlink:', bitlink)
     except requests.exceptions.HTTPError as err:
         print("Ошибка", err)
-
 
 
 if __name__ == "__main__":
