@@ -21,9 +21,9 @@ pip install -r requirements.txt
 для изоляции проекта.
 
 ###  Как запустить скрипт
-```
+
 Запустить оболочку PowerShell или открыть командную строку и в ней запустить скрипт (ввести путь до файла и имя файла, например, так: C:\Scripts\pipenv run main.py [ваша ссылка](https://translate.google.com/), или перейти в папку скрипта командой cd C:\Scripts и запустить его командой .\pipenv run main.py [ваша ссылка](https://translate.google.com/))
-```
+
 
 ### Цель проекта
 
