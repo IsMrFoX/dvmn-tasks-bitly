@@ -61,16 +61,17 @@ def main():
         'args',
         help='Введите полную ссылку или битлинк'
     )
-    url_args = parser.parse_args()
-    parsed_url = urlparse(url_args.url)
-    parsed_url = f"{parsed_url.netloc}{parsed_url.path}"
+    args = parser.parse_args()
+    args = args.args
+    parsed_args = urlparse(args)
+    is_link = f"{parsed_args.netloc}{parsed_args.path}"
 
     try:
-        if is_bitlink(bitly_token, parsed_url):
-            cliks_count = count_clicks(bitly_token, parsed_url)
+        if is_bitlink(bitly_token, is_link):
+            cliks_count = count_clicks(bitly_token, is_link)
             print('Переходов по bitlink:', cliks_count)
         else:
-            bitlink = shorten_link(bitly_token, parsed_url)
+            bitlink = shorten_link(bitly_token, args)
             print('bitlink:', bitlink)
     except requests.exceptions.HTTPError as err:
         print("Ошибка", err)
@@ -78,4 +79,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
