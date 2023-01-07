@@ -20,6 +20,11 @@ pip install -r requirements.txt
 Рекомендуется использовать [virtualenv/venv](https://docs.python.org/3/library/venv.html?highlight=venv#module-venv), или как в моем случае [pyenv](https://docs.python-guide.org/dev/virtualenvs/)
 для изоляции проекта.
 
+###  Как запустить скрипт
+```
+Запустить оболочку PowerShell или открыть командную строку и в ней запустить скрипт (ввести путь до файла и имя файла, например, так: C:\Scripts\pipenv run main.py [ваша ссылка](https://translate.google.com/), или перейти в папку скрипта командой cd C:\Scripts и запустить его командой .\pipenv run main.py [ваша ссылка](https://translate.google.com/))
+```
+
 ### Цель проекта
 
 Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/).
