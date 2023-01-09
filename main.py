@@ -63,11 +63,11 @@ def main():
     )
     args = parser.parse_args()
     parsed_args = urlparse(args.url)
-    without_protocol_link = f"{parsed_args.netloc}{parsed_args.path}"
+    link_without_protocol = f"{parsed_args.netloc}{parsed_args.path}"
 
     try:
-        if is_bitlink(bitly_token, without_protocol_link):
-            cliks_count = count_clicks(bitly_token, without_protocol_link)
+        if is_bitlink(bitly_token, link_without_protocol):
+            cliks_count = count_clicks(bitly_token, link_without_protocol)
             print('Переходов по bitlink:', cliks_count)
         else:
             bitlink = shorten_link(bitly_token, args.url)
