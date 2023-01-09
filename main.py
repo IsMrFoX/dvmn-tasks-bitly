@@ -62,16 +62,15 @@ def main():
         help='Введите полную ссылку или битлинк'
     )
     args = parser.parse_args()
-    args = args.args
-    parsed_args = urlparse(args)
-    is_link = f"{parsed_args.netloc}{parsed_args.path}"
+    parsed_args = urlparse(args.url)
+    without_protocol_link = f"{parsed_args.netloc}{parsed_args.path}"
 
     try:
-        if is_bitlink(bitly_token, is_link):
-            cliks_count = count_clicks(bitly_token, is_link)
+        if is_bitlink(bitly_token, without_protocol_link):
+            cliks_count = count_clicks(bitly_token, without_protocol_link)
             print('Переходов по bitlink:', cliks_count)
         else:
-            bitlink = shorten_link(bitly_token, args)
+            bitlink = shorten_link(bitly_token, args.url)
             print('bitlink:', bitlink)
     except requests.exceptions.HTTPError as err:
         print("Ошибка", err)
