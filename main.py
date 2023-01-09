@@ -58,7 +58,7 @@ def main():
                     ' возвращает кол-во переходов по ней.'
     )
     parser.add_argument(
-        'args',
+        'url',
         help='Введите полную ссылку или битлинк'
     )
     args = parser.parse_args()
